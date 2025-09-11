@@ -29,9 +29,16 @@
 
 ## 👥 Members
 
-|------|------|--------|
-| <img src="https://github.com/7004hsh.png" width="50"/> | 현/허성현 | [@7004hsh](https://github.com/7004hsh) |
-
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/7004hsh">
+        <img src="https://github.com/7004hsh.png" width="150"/><br/>
+        <sub><b>현 / 허성현</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 <br>
 
 
