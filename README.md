@@ -34,9 +34,11 @@
     <td align="center">
       <a href="https://github.com/7004hsh">
         <img src="https://github.com/7004hsh.png" width="150"/><br/>
-        <sub><b>현 / 허성현</b></sub>
       </a>
+</br>
+      <b>현 / 허성현</b>
     </td>
+    
   </tr>
 </table>
 <br>
