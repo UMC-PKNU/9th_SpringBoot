@@ -38,8 +38,9 @@
       <a href="https://github.com/7004hsh">
         <img src="https://github.com/7004hsh.png" width="200"/>
       </a>
-      <br/>
-      <b>현 / 허성현</b>
+  </tr>
+  <tr>
+    <b>현 / 허성현</b>
   </tr>
 </table>
 <br>
