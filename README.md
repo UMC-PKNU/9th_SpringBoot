@@ -30,15 +30,16 @@
 ## 👥 Members
 
 <table>
+
+</table>
+<table>
   <tr>
     <td align="center">
       <a href="https://github.com/7004hsh">
-        <img src="https://github.com/7004hsh.png" width="150"/><br/>
+        <img src="https://github.com/7004hsh.png" width="200"/>
       </a>
-</br>
+      <br/>
       <b>현 / 허성현</b>
-    </td>
-    
   </tr>
 </table>
 <br>
