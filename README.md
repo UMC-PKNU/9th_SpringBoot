@@ -1,7 +1,7 @@
 # 9th-SpringBoot
 
 
-#💚 UMC PKNU 9th_SpringBoot
+# 🐬 UMC PKNU 9th_SpringBoot
 
 
 [UMC PKNU 9기를 위한 깃허브 사용법 및 규칙](https://www.notion.so/makeus-challenge/Git-Hub-26ab57f4596b8116aa1bd5f98f55a63f?pvs=25)  
