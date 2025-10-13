@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Members</title></head>
+<body>
+<h1>Member List</h1>
+<table border="1" cellpadding="6">
+    <thead>
+    <tr><th>ID</th><th>Username</th><th>Email</th><th>Created</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${members}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.username}"></td>
+        <td th:text="${m.email}"></td>
+        <td th:text="${m.createdAt}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
