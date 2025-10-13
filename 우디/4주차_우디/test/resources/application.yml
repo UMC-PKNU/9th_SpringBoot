@@ -1,0 +1,20 @@
+# src/test/resources/application.yml
+spring:
+  datasource:
+    # H2 데이터베이스를 사용하도록 설정
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # 테스트 시작 시 테이블 생성, 종료 시 삭제
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true # H2 콘솔을 웹에서 볼 수 있도록 함
