@@ -1,0 +1,94 @@
+# 1번 홈 화면 API
+
+# 1-1 지역 드롭다운 선택 API
+Endpoint: PUT /api/me/location # me는 alias처럼 쓰여서 userId값을 반환
+Request Header: Authorization : Bearer {access_token}
+Path Variable: userId
+Query String: 없음
+Request Body: 
+{”location”: “안암동”}
+
+# 1-2 미션 달성도 API
+Endpoint: GET /api/home/mission-summary
+Request Header: Authorization : Bearer {access_token}
+Path Variable: 없음
+Query String: location=안암동
+Request Body: 없음 # 받아올 실제 데이터가 없어서
+
+# 1-3 내 미션 보기 API
+Endpoint: GET /api/home/my-missions
+Request Header: Authorization : Bearer {access_token}
+Path Variable: 없음
+Query String: status=ONGOING # 실제로는 0
+page=1&size=10
+Request Body: 없음
+
+# 1-4 미션 도전 버튼 API
+Endpoint: POST /api/missions/{missionId}/start # 시작 버튼 누르면 시작
+Request Header: Authorization : Bearer {access_token}
+Path Variable: missionId
+Query String: 없음
+Request Body: 없음
+
+# 2번 마이 페이지 리뷰 작성 API
+
+# 2-1 마이페이지에서 리뷰 보기 API
+Endpoint: GET /api/me/reviews
+Request Header: Authorization : Bearer {access_token}
+Path Variable: 없음
+Query String: page=1&size=10 # 페이징
+Request Body: 없음
+
+# 2-2 리뷰 등록 API
+Endpoint: POST /api/reviews
+Request Header: Authorization: Bearer {access_token}
+Path Variable: 없음
+Query String: 없음
+Request Body:
+{
+“missionId”: 60,
+“sstoreId”: 80,
+“content”: “음 너무 맛있어요 포인트도 얻고 맛있는 맛집도 알게…”,
+“rating”: 4.5,
+“images”: [
+    “https://cdn.example.com/reviews/1.jpg”,
+    “https://cdn.example.com/reviews/2.jpg”
+    ]
+}
+
+# 3번 미션 목록 조회 API
+Endpoint: GET /api/my-missions
+Request Header: Authorization: Bearer {access_token}
+Path Variable: 없음
+Query String: 
+status=ONGOING # 진행중
+status=COMPLETED # 완료
+page=1&size=10 # 페이징
+Request Body: 없음
+
+# 4번 미션 성공 누르기 API
+Endpoint: POST /api/my-missions/{missionId}/success
+Request Header: Authorization: Bearer {access_token}
+Path Variable: missionId # 성공 처리할 미션 ID
+Query String: 없음
+Request Body:
+{
+“authCode”: “920394810”
+}
+
+# 5번 회원 가입하기 API
+Endpoint: POST /api/users/signup
+Request Header: Content-Type: application/json
+Path Variable: 없음
+Query String: 없음
+Request Body:
+{
+“name”: “허성현”,
+“gender”: “남”,
+“birthDate”: “2001-06-07”,
+“address”: “부산시 남구”,
+“email”: “7004hsh@naver.com”,
+“password”: “1234567890”,
+“phone”: “01012345678”,
+“preferences”: [”한식”, “중식”, “일식”]
+}
