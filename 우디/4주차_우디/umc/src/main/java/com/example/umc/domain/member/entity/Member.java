@@ -78,17 +78,17 @@ public class Member {
     @Column(nullable=false)
     private int successMissionCnt = 0;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<UserTerm> userTerms = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<MemberMission> memberMissions = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<UserTerm> userTerms = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Inquiry> inquiries = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<Inquiry> inquiries = new ArrayList<>();
 }
 

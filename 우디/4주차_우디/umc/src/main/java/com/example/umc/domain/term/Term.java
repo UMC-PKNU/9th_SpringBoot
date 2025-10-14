@@ -24,6 +24,6 @@ public class Term {
     @Column(nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "term", cascade = CascadeType.ALL)
-    private List<UserTerm> userTerms = new ArrayList<>();
+//    @OneToMany(mappedBy = "term", cascade = CascadeType.ALL)
+//    private List<UserTerm> userTerms = new ArrayList<>();
 }
