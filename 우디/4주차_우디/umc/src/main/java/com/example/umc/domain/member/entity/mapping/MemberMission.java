@@ -1,4 +1,4 @@
-package com.example.umc.domain.membermission;
+package com.example.umc.domain.member.entity.mapping;
 
 
 import com.example.umc.domain.member.entity.Member;

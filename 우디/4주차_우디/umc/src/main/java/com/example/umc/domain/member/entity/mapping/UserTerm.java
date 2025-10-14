@@ -1,6 +1,7 @@
-package com.example.umc.domain.term;
+package com.example.umc.domain.member.entity.mapping;
 
 import com.example.umc.domain.member.entity.Member;
+import com.example.umc.domain.term.Term;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

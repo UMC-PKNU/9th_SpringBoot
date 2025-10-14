@@ -1,6 +1,6 @@
 package com.example.umc.domain.mission;
 
-import com.example.umc.domain.membermission.MemberMission;
+import com.example.umc.domain.member.entity.mapping.MemberMission;
 import com.example.umc.domain.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

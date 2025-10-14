@@ -5,8 +5,8 @@ import com.example.umc.domain.location.Location;
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.MemberStatus;
 import com.example.umc.domain.member.enums.PreferredFood;
-import com.example.umc.domain.membermission.MemberMission;
-import com.example.umc.domain.term.UserTerm;
+import com.example.umc.domain.member.entity.mapping.MemberMission;
+import com.example.umc.domain.member.entity.mapping.UserTerm;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -78,17 +78,17 @@ public class Member {
     @Column(nullable=false)
     private int successMissionCnt = 0;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<UserTerm> userTerms = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<MemberMission> memberMissions = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<UserTerm> userTerms = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Inquiry> inquiries = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<Inquiry> inquiries = new ArrayList<>();
 }
 
