@@ -56,5 +56,5 @@ public class Store {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
-    private Location location;  
+    private Location location;
 }
