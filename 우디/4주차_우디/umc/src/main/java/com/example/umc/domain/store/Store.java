@@ -48,11 +48,11 @@ public class Store {
     @Column(nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Mission> missions = new ArrayList<>();
+//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+//    private List<Review> reviews = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+//    private List<Mission> missions = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
