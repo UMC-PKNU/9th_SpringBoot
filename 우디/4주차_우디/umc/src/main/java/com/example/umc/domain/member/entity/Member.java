@@ -1,12 +1,9 @@
 package com.example.umc.domain.member.entity;
 
-import com.example.umc.domain.inquiry.Inquiry;
 import com.example.umc.domain.location.Location;
+import com.example.umc.domain.member.entity.mapping.MemberFood;
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.MemberStatus;
-import com.example.umc.domain.member.enums.PreferredFood;
-import com.example.umc.domain.member.entity.mapping.MemberMission;
-import com.example.umc.domain.member.entity.mapping.UserTerm;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -65,10 +62,6 @@ public class Member {
     @Column(nullable = false)
     private int point;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private PreferredFood preferredFood;
-
     @Column(nullable = false, length=20)
     private String phoneNumber;
 
@@ -90,5 +83,8 @@ public class Member {
 
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 //    private List<Inquiry> inquiries = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MemberFood> memberFoods = new ArrayList<>();
 }
 
