@@ -1,6 +1,6 @@
-package com.example.umc.domain.member.enums;
+package com.example.umc.domain.review.mapping;
 
-public enum PreferredFood {
+public enum FoodCategory {
     KOREAN,
     JAPANESE,
     CHINESE,
