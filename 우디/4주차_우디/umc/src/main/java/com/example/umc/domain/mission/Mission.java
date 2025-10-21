@@ -1,7 +1,7 @@
 package com.example.umc.domain.mission;
 
 import com.example.umc.domain.member.entity.mapping.MemberMission;
-import com.example.umc.domain.store.Store;
+import com.example.umc.domain.store.enums.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,12 +23,6 @@ public class Mission {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable=false, length=50)
-    private String title;
-
-    @Column(nullable=false, length=00)
-    private String content;
 
     @Column(nullable=false)
     private int moneyLowerLimit;

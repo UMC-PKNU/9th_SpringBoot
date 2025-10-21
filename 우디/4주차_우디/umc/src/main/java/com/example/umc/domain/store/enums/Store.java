@@ -1,8 +1,7 @@
-package com.example.umc.domain.store;
+package com.example.umc.domain.store.enums;
 
 import com.example.umc.domain.location.Location;
-import com.example.umc.domain.mission.Mission;
-import com.example.umc.domain.review.entity.Review;
+import com.example.umc.domain.store.mapping.Food;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +11,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder
@@ -44,10 +41,6 @@ public class Store {
     @Column(nullable = false)
     private StoreStatus status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Category category;
-
 //    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
 //    private List<Review> reviews = new ArrayList<>();
 //
@@ -57,4 +50,8 @@ public class Store {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "food_id")
+    private Food food;
 }

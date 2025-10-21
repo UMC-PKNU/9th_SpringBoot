@@ -1,4 +1,4 @@
-package com.example.umc.domain.review.mapping;
+package com.example.umc.domain.store.mapping;
 
 public enum FoodCategory {
     KOREAN,
