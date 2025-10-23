@@ -1,6 +1,5 @@
 package com.example.umc.domain.member.entity;
 
-import com.example.umc.domain.location.Location;
 import com.example.umc.domain.member.entity.mapping.MemberFood;
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.MemberStatus;
@@ -44,6 +43,9 @@ public class Member {
     @Column(nullable = false, length=50)
     private String address;
 
+    @Column(nullable = false, length=5)
+    private String position;
+
     @CreatedDate
     @Column(nullable=false)
     private LocalDateTime createdAt;
@@ -76,10 +78,6 @@ public class Member {
 //
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 //    private List<UserTerm> userTerms = new ArrayList<>();
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id")
-    private Location location;
 
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 //    private List<Inquiry> inquiries = new ArrayList<>();
