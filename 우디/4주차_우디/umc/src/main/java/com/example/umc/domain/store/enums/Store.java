@@ -1,6 +1,5 @@
 package com.example.umc.domain.store.enums;
 
-import com.example.umc.domain.location.Location;
 import com.example.umc.domain.store.mapping.Food;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,6 +29,9 @@ public class Store {
     @Column(nullable = false, length=50)
     private String address;
 
+    @Column(nullable = false, length=5)
+    private String position;
+
     @Column(nullable = false)
     private double rating;
 
@@ -43,13 +45,9 @@ public class Store {
 
 //    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
 //    private List<Review> reviews = new ArrayList<>();
-//
+
 //    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
 //    private List<Mission> missions = new ArrayList<>();
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id")
-    private Location location;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "food_id")
