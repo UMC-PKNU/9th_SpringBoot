@@ -19,21 +19,22 @@ public class UserMission extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
+    @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     @Builder.Default
     private MissionStatus status = MissionStatus.NOT_STARTED;
 
-    @Builder.Default
-    private LocalDateTime startedAt = LocalDateTime.now();
+    private LocalDateTime startedAt; // 시작하기전에는 NULL가능
 
-    private LocalDateTime completedAt;
+    private LocalDateTime completedAt; // 끝내기전에는 NULL가능
 
+    @Column(nullable = false, length = 20)
     private String authCode;
 }

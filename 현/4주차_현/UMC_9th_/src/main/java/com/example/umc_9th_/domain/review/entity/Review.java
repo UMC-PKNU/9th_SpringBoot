@@ -6,7 +6,6 @@ import com.example.umc_9th_.domain.store.entity.Store;
 import com.example.umc_9th_.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,15 +19,15 @@ public class Review extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
+    @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
     @Column(nullable = false)
@@ -36,7 +35,4 @@ public class Review extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
-
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewImg> images;
 }

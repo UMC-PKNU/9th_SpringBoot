@@ -1,10 +1,8 @@
 package com.example.umc_9th_.domain.terms.entity;
 
-import com.example.umc_9th_.domain.base.entity.BaseEntity;
 import com.example.umc_9th_.domain.user.entity.UserTerms;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -12,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Table(name = "terms")
-public class Terms extends BaseEntity {
+public class Terms {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,8 +19,5 @@ public class Terms extends BaseEntity {
     private String name;
 
     @Column(nullable = false)
-    private Boolean type;
-
-    @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL)
-    private List<UserTerms> userTerms;
+    private Boolean mandatory; // true면 필수 false면 선택
 }
