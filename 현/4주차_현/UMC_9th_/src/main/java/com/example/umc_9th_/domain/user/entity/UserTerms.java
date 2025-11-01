@@ -15,16 +15,15 @@ public class UserTerms {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "terms_id")
+    @JoinColumn(name = "terms_id", nullable = false)
     private Terms terms;
 
     @Column(nullable = false)
     private Boolean agreed;
 
-    @Column(nullable = false)
-    private LocalDateTime agreedAt = LocalDateTime.now();
+    private LocalDateTime agreedAt; // 동의 안했으면 NULL
 }

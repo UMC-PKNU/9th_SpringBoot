@@ -3,7 +3,6 @@ package com.example.umc_9th_.domain.store.entity;
 import com.example.umc_9th_.domain.base.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +17,4 @@ public class FoodCategory extends BaseEntity {
 
     @Column(nullable = false, length = 20)
     private String name;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Store> stores;
 }

@@ -6,7 +6,6 @@ import com.example.umc_9th_.domain.user.entity.UserMission;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,7 +19,7 @@ public class Mission extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
     @Column(nullable = false, length = 100)
@@ -35,9 +34,5 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime startDate;
 
-    @Column(nullable = false)
-    private LocalDateTime endDate;
-
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<UserMission> userMissions;
+    private LocalDateTime endDate; // 미션 진행 중이면 NULL 가능
 }
