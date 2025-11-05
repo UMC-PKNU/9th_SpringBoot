@@ -1,0 +1,22 @@
+# === .env 파일 ===
+.env
+**/.env
+
+# === 주차별 UMC 폴더 ===
+UMC_9th_week4/
+UMC_9th_week5/
+
+# === Spring Boot 프로젝트 폴더 ===
+umc_9th_spring/
+
+# === IDE / 빌드 캐시 ===
+.idea/
+.vscode/
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar  # Gradle wrapper만 예외로 유지하고 싶으면 이 줄 유지
+
+# === OS / 기타 임시 파일 ===
+.DS_Store
+Thumbs.db
