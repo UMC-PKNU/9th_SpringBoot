@@ -1,5 +1,6 @@
 package com.example.umc9th.controller;
 
+import com.example.umc9th.domain.review.dto.ReviewResponseDto;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.service.ReviewQueryService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,12 @@ public class ReviewController {
     }
 
     @GetMapping("/reviews/{mem_id}/byStoreNameAndRating")
-    public List<Review> findReviewsByStoreAndRating(
+    public List<ReviewResponseDto> findReviewsByStoreAndRating(
             @PathVariable Long mem_id,
             @RequestParam(required = false) String store_name,
             @RequestParam(required = false) Long rating
     ){
-        List<Review> result = reviewQueryService.findReviewsByStoreAndRating(mem_id,store_name, rating);
+        List<ReviewResponseDto> result = reviewQueryService.findReviewsByStoreAndRating(mem_id,store_name, rating);
         return result;
     }
 }

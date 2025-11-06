@@ -1,12 +1,14 @@
 package com.example.umc9th.service;
 
+import com.example.umc9th.domain.review.dto.ReviewResponseDto;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.repository.ReviewRepository;
 import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import java.util.stream.Collectors; // ⭐ Collectors import 추가
+import org.springframework.transaction.annotation.Transactional; // ⭐ 트랜잭션 import 추가
 import java.util.List;
 
 @Service
@@ -42,8 +44,8 @@ public class ReviewQueryService {
 
         return reviewList;
     }
-
-    public List<Review> findReviewsByStoreAndRating(
+    @Transactional(readOnly = true) // ⭐ DTO 변환을 위한 트랜잭션 설정
+    public List<ReviewResponseDto> findReviewsByStoreAndRating(
             Long mem_id,
             String store_name,
             Long rating
@@ -69,7 +71,9 @@ public class ReviewQueryService {
 
         List<Review> reviewList = reviewRepository.findReviewsByStoreAndRating((builder));
 
-        return reviewList;
+        return reviewList.stream()
+                .map(ReviewResponseDto::from) // DTO의 팩토리 메서드를 사용해 변환
+                .collect(Collectors.toList());
 
     }
 }
