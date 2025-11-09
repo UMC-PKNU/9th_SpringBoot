@@ -58,7 +58,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private LocalDateTime inactiveAt;
 
     @Column(nullable = false)

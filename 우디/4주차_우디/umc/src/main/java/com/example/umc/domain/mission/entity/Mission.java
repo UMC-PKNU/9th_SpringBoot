@@ -1,7 +1,7 @@
-package com.example.umc.domain.mission;
+package com.example.umc.domain.mission.entity;
 
 import com.example.umc.domain.member.entity.mapping.MemberMission;
-import com.example.umc.domain.store.enums.Store;
+import com.example.umc.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class Mission {
     private int moneyLowerLimit;
 
     @Column(nullable=false)
-    private LocalDateTime period;
+    private int period;
 
     @Column(nullable=false)
     private int point;

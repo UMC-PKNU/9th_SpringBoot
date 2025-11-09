@@ -1,5 +1,6 @@
-package com.example.umc.domain.store.enums;
+package com.example.umc.domain.store.entity;
 
+import com.example.umc.domain.store.enums.StoreStatus;
 import com.example.umc.domain.store.mapping.Food;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.umc.domain.term;
+package com.example.umc.domain.term.enums;
 
 public enum Category {
     AGE,
