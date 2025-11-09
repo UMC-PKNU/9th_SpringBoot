@@ -2,7 +2,8 @@ package com.example.umc.domain.member.entity.mapping;
 
 
 import com.example.umc.domain.member.entity.Member;
-import com.example.umc.domain.mission.Mission;
+import com.example.umc.domain.member.enums.MissionStatus;
+import com.example.umc.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

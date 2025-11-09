@@ -1,14 +1,11 @@
-package com.example.umc.domain.term;
+package com.example.umc.domain.term.entity;
 
-import com.example.umc.domain.member.entity.mapping.UserTerm;
+import com.example.umc.domain.term.enums.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder

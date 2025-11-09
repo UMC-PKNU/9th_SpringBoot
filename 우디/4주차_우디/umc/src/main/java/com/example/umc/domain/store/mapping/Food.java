@@ -1,14 +1,11 @@
 package com.example.umc.domain.store.mapping;
 
-import com.example.umc.domain.member.entity.mapping.MemberFood;
+import com.example.umc.domain.store.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder
@@ -21,8 +18,11 @@ public class Food {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // category로 컬럼명 바꾸는거 생각해보기
+    @Enumerated(EnumType.STRING)
     private FoodCategory food;
 
-    @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
-    private List<MemberFood> memberFoods = new ArrayList<>();
+    // 단방향 관계로 바꿈. 있다가 커밋하기
+//    @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
+//    private List<MemberFood> memberFoods = new ArrayList<>();
 }
