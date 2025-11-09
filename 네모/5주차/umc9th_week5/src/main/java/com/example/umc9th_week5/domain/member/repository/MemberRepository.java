@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 //    Member findById(Long id);
 
     @Query("select m from Member m where m.id = :userId")
-    Member findMember(@Param("userId") Long userId);
+    Optional<Member> findMember(@Param("userId") Long userId);
 }
 

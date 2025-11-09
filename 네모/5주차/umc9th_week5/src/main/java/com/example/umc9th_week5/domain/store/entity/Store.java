@@ -29,9 +29,8 @@ public class Store extends BaseEntity {
     @Builder.Default
     private List<StoreReview> storeReviewList = new ArrayList<>();
 
-    @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name="region_id")
-    private Region region;
+    private String region;
 
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name="category_id")
