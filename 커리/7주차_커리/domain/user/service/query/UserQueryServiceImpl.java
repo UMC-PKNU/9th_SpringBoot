@@ -60,7 +60,13 @@ public class UserQueryServiceImpl implements UserQueryService {
     //미션 상태별, 유저별, 페이지 조건으로 조회
     @Override
     public Page<MissionResDTO.MissionInfo> getUserMissionsByStatus(Long userId, String status, int page, int size) {
-        UserMissionMapStatus missionStatus = UserMissionMapStatus.valueOf(status.toUpperCase());
+        UserMissionMapStatus missionStatus;
+        try {
+            missionStatus = UserMissionMapStatus.valueOf(status.toUpperCase());
+            //enum에 선언되지 않은 문자열 들어오면 Illegal 예외가 터진다고 함.
+        } catch (IllegalArgumentException e) {
+            throw new UserException(UserErrorCode.USER_INVALID_MISSION_STATUS);
+        }
         Page<UserMissionMap> missions = userMissionMapRepository.findUserMissionsByStatus(
                 userId, missionStatus, PageRequest.of(page, size)
         );
