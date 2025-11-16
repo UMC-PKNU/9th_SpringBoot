@@ -1,14 +1,14 @@
 package com.example.umc9th_week5.domain.review.dto.res;
 
-import com.example.umc9th_week5.domain.member.dto.res.MemberResDto;
-import com.example.umc9th_week5.domain.review.entity.StoreReview;
-import com.example.umc9th_week5.domain.store.dto.res.StoreResDto;
+import com.example.umc9th_week5.domain.member.dto.res.MemberResDTO;
+import com.example.umc9th_week5.domain.store.dto.res.StoreResDTO;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter
-@Builder
-public class ReviewResDto {
+//@Getter
+//@Builder
+public class ReviewResDTO {
+    /*
     private Long reviewId;
     private Float rating;
     private String content;
@@ -23,6 +23,15 @@ public class ReviewResDto {
                 .storeInfo(StoreResDto.from(review.getStore()))
                 .memberInfo(MemberResDto.from(review.getMember()))
                 .build();
-    }
+    }*/
 
+    @Builder
+    @Getter
+    public static class ReviewInfo{
+        private Long reviewId;
+        private Float rating;
+        private String content;
+        private StoreResDTO.storeInfo storeInfo;
+        private MemberResDTO.memberInfo memberInfo;
+    }
 }
