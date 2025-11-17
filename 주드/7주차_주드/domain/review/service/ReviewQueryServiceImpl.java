@@ -1,0 +1,84 @@
+package com.example.umc9th.domain.review.service;
+
+import com.example.umc9th.domain.review.entity.QReview;
+import com.example.umc9th.domain.review.entity.Review;
+import com.example.umc9th.domain.review.exception.ReviewException;
+import com.example.umc9th.domain.review.exception.code.ReviewErrorCode;
+import com.example.umc9th.domain.review.repository.ReviewRepository;
+import com.querydsl.core.BooleanBuilder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ReviewQueryServiceImpl implements ReviewQueryService {
+
+    private final ReviewRepository reviewRepository;
+
+    public List<Review> findReviewsByStoreAndRating(
+            Long memberId,
+            String storeName,
+            Long rating
+    ) {
+        QReview review = QReview.review;
+        BooleanBuilder builder = new BooleanBuilder();
+
+        // mem_id는 @PathVariable이라 조건 달 필요없이 그냥 필수라함
+//        if (mem_id == null) {
+//            // 비즈니스 로직에 따라 NullPointerException 또는 IllegalArgumentException을 던질 수 있습니다.
+//            //throw new IllegalArgumentException("회원 ID(mem_id)는 필수 조건입니다.");
+//            throw new ReviewException(ReviewErrorCode.REVIEW_MEMBER_ID_REQUIRED);
+//        }
+
+        builder.and(review.member.id.eq(memberId));
+
+        if (storeName == null){
+            throw new ReviewException(ReviewErrorCode.REVIEW_STORE_ID_REQUIRED);
+        }
+        if (rating == null) {
+            throw new ReviewException(ReviewErrorCode.REVIEW_RATING_REQUIRED);
+        }
+        builder.and(review.store.name.eq(storeName));
+        builder.and(review.rating.eq(rating));
+
+        List<Review> reviewList = reviewRepository.findReviewsByStoreAndRating((builder));
+
+        return reviewList;
+
+    }
+    //6주차
+//    @Transactional(readOnly = true) // ⭐ DTO 변환을 위한 트랜잭션 설정
+//    public List<ReviewResponseDto> findReviewsByStoreAndRating(
+//            Long mem_id,
+//            String store_name,
+//            Long rating
+//    ) {
+//        QReview review = QReview.review;
+//        BooleanBuilder builder = new BooleanBuilder();
+//
+//        if (mem_id == null) {
+//            // 비즈니스 로직에 따라 NullPointerException 또는 IllegalArgumentException을 던질 수 있습니다.
+//            throw new IllegalArgumentException("회원 ID(mem_id)는 필수 조건입니다.");
+//        }
+//
+//        builder.and(review.member.id.eq(mem_id));
+//
+//        if (store_name != null){
+//            builder.and(review.store.name.eq(store_name));
+//        }
+//        if (rating != null) {
+//            // rating 값이 있으면 정확히 일치하는 리뷰를 필터링합니다.
+//            // null이면 해당 멤버가 쓴 리뷰 전체 출력
+//            builder.and(review.rating.eq(rating));
+//        }
+//
+//        List<Review> reviewList = reviewRepository.findReviewsByStoreAndRating((builder));
+//
+//        return reviewList.stream()
+//                .map(ReviewResponseDto::from) // DTO의 팩토리 메서드를 사용해 변환
+//                .collect(Collectors.toList());
+//
+//    }
+}
