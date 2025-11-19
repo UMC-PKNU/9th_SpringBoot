@@ -12,7 +12,7 @@ import com.example.umc_9th_spring.domain.store.dto.res.StoreResDTO;
 import com.example.umc_9th_spring.domain.store.entity.Location;
 import com.example.umc_9th_spring.domain.store.entity.Store;
 import com.example.umc_9th_spring.domain.store.exception.StoreException;
-import com.example.umc_9th_spring.domain.store.repository.LocationRepository;
+import com.example.umc_9th_spring.domain.location.repository.LocationRepository;
 import com.example.umc_9th_spring.domain.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

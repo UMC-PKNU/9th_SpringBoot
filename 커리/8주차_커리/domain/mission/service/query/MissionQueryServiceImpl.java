@@ -34,7 +34,7 @@ public class MissionQueryServiceImpl implements MissionQueryService {
 
     @Override
     public List<MissionResDTO.MissionInfo> getMissions(){
-        List<Mission> missions = missionRepository.findAllByOrderByCreatedAdDesc();
+        List<Mission> missions = missionRepository.findAllByOrderByCreatedAtDesc();
         return missions.stream()
                 .map(MissionConverter::toMissionInfoDTO)
                 .toList();

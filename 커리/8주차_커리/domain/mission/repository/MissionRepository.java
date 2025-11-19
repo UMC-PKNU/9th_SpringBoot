@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface MissionRepository extends JpaRepository<Mission, Long> {
 
 
-    List<Mission> findAllByOrderByCreatedAdDesc();
+    List<Mission> findAllByOrderByCreatedAtDesc();
 
     Optional<Mission> findById(Long missionId);
 
