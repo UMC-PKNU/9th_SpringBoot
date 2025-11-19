@@ -39,7 +39,7 @@ public class ReviewController {
 
     /* 02-03 특정 가게 리뷰 별점순으로 필터링된 리뷰 목록 조회 API*/
     // 로그인이 구현안되어잇어서 API 명세서에는 userId 쿼리 파라미터 기입 안했음. (나중에 구현하면 @AuthenticationPrincipal 이걸로 현재 로그인된 사용자 id 들고올 수 있음)
-    @GetMapping("/store/{storeId}")
+    @GetMapping("/store/{storeId}/filter")
     public ApiResopnse<List<ReviewResDTO.ReviewInfo>> getReviewsFilter(
             @RequestParam Long userId,
             @PathVariable Long storeId,

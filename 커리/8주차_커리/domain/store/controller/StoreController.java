@@ -49,15 +49,6 @@ public class StoreController {
         return ApiResopnse.onSuccess(MissionSuccessCode.MISSION_CREATED, result);
     }
 
-    /* 04-01 특정 지역에 가게 추가하기 */
-    @PostMapping("/{locationId}/stores")
-    public ApiResopnse<StoreResDTO.StoreInfo> createStore(
-            @PathVariable Long locationId,
-            @RequestBody @Valid StoreReqDTO.CreateStore request
-    ) {
-        StoreResDTO.StoreInfo result =
-                storeCommandService.createStore(locationId, request);
-        return ApiResopnse.onSuccess(StoreSuccessCode.STORE_REGISTER_SUCCESS, result);
-    }
+
 
 }

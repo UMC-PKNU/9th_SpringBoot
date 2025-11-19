@@ -1,4 +1,4 @@
-package com.example.umc_9th_spring.domain.store.repository;
+package com.example.umc_9th_spring.domain.location.repository;
 
 import com.example.umc_9th_spring.domain.store.entity.Location;
 import org.springframework.data.jpa.repository.JpaRepository;

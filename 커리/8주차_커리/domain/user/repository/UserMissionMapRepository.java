@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface UserMissionMapRepository extends JpaRepository<UserMissionMap, Long> {
 
-    List<UserMissionMap> findByUserIdOrderByReceviedAtDesc(Long userId);
+    List<UserMissionMap> findByUserIdOrderByReceivedAtDesc(Long userId);
     Optional<UserMissionMap> findByUserIdAndMissionId(Long userId, Long missionId);
     boolean existsByUserIdAndMissionId(Long userId, Long missionId);
     List<UserMissionMap> findAllByUserId(Long userId);
