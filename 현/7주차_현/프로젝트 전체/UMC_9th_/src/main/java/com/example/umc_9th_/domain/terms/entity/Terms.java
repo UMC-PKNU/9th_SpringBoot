@@ -19,5 +19,8 @@ public class Terms {
     private String name;
 
     @Column(nullable = false)
+    private String content;
+
+    @Column(nullable = false)
     private Boolean mandatory; // true면 필수 false면 선택
 }
