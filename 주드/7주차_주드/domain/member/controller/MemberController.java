@@ -1,0 +1,75 @@
+package com.example.umc9th.domain.member.controller;
+
+import com.example.umc9th.domain.member.converter.MemberConverter;
+import com.example.umc9th.domain.member.dto.req.MemberReqDTO;
+import com.example.umc9th.domain.member.dto.res.MemberResDTO;
+import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.entity.mapping.MemberMission;
+import com.example.umc9th.domain.member.service.MemberService;
+import com.example.umc9th.global.apiPayload.ApiResponse;
+import com.example.umc9th.global.apiPayload.code.BaseSuccessCode; // 성공 코드
+import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+
+public class MemberController {
+
+    private final MemberService memberService;
+
+    @PostMapping("/auth/users/register")
+    public ApiResponse<MemberResDTO.JoinResultDTO> join(@RequestBody MemberReqDTO.JoinDto request) {
+        // 1. 서비스 로직 호출 (Member 엔티티 생성)
+        Member member = memberService.joinMember(request);
+
+        // 2. 응답 DTO 생성 및 반환
+        return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, MemberConverter.toJoinResultDTO(member));
+    }
+    // 홈 화면 조회 API
+    @GetMapping("/users/{userId}/home")
+    public ApiResponse<MemberResDTO.HomeViewDTO> getHome(@PathVariable(name = "userId") Long userId) {
+
+        // 1. 유저 정보 가져오기 (닉네임, 포인트 등)
+        Member member = memberService.findMember(userId);
+
+        // 2. 진행 중인 미션 목록 가져오기
+        List<MemberMission> myMissions = memberService.findMyProgressMissions(userId);
+
+        // 3. 완료한 미션 개수 가져오기 (7/10 계산용)
+        Integer completedCount = memberService.getCompletedMissionCount(userId);
+
+        // 4. 변환 및 응답
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                MemberConverter.toHomeViewDTO(member, myMissions, completedCount)
+        );
+    }
+    @GetMapping("/users/{userId}/progressMission")
+    public ApiResponse<List<MemberResDTO.MyMissionDTO>> getMyProgressMission(@PathVariable(name = "userId") Long userId) {
+
+
+        List<MemberMission> progressMissions = memberService.findMyProgressMissions(userId);
+
+
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                MemberConverter.toMyMissionDTOList(progressMissions)
+        );
+    }
+
+    @GetMapping("/users/{userId}/completeMission")
+    public ApiResponse<List<MemberResDTO.MyMissionDTO>> getMyCompleteMission(@PathVariable(name = "userId") Long userId) {
+
+        List<MemberMission> completeMissions = memberService.findMyCompleteMissions(userId);
+
+
+        return ApiResponse.onSuccess(
+                GeneralSuccessCode.OK,
+                MemberConverter.toMyMissionDTOList(completeMissions)
+        );
+    }
+}

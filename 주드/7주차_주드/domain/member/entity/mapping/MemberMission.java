@@ -1,6 +1,7 @@
 package com.example.umc9th.domain.member.entity.mapping;
 
 import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.enums.MemberMissionStatus;
 import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,11 +28,9 @@ public class MemberMission {
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
-    @Column(name = "is_accept", nullable = false)
-    private boolean is_accept;
-
-    @Column(name = "is_complete", nullable = false)
-    private boolean is_complete;
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private MemberMissionStatus status = MemberMissionStatus.PROGRESS;
 
     @Column(name = "due_date", nullable = false)
     private LocalDateTime due_date;

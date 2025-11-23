@@ -59,8 +59,8 @@ public class Member{
     @Column(name = "created_at", nullable = false)
     private LocalDateTime created_at;
 
-    @Column(name = "phone_number", length = 11, nullable = false, unique = true)
-    private String phone_number;
+    @Column(name = "phoneNumber", length = 13, nullable = false, unique = true)
+    private String phoneNumber;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
