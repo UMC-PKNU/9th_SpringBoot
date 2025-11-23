@@ -1,16 +1,16 @@
 package com.example.umc9th.domain.review.controller;
 
 import com.example.umc9th.domain.review.converter.ReviewConverter;
+import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +39,20 @@ public class ReviewController {
                     code,
                     convertedReviews
             );
+    }
+    // 리뷰 작성 API
+    @PostMapping("/reviews/{userId}/missions/{missionId}")
+    public ApiResponse<ReviewResDto.CreateReviewResultDTO> createReview(
+            @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "missionId") Long missionId,
+            @RequestBody
+            @Valid ReviewReqDto.JoinDto request
+    ) {
+        // 1. 서비스 호출
+        Review review = reviewQueryService.createReview(userId, missionId, request);
+
+        // 2. 응답 반환 (201 Created)
+        return ApiResponse.onSuccess(GeneralSuccessCode.CREATED, ReviewConverter.toCreateReviewResultDTO(review));
     }
 
 

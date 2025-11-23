@@ -1,21 +1,57 @@
 package com.example.umc9th.domain.review.service;
 
+import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.exception.MemberException;
+import com.example.umc9th.domain.member.exception.code.MemberErrorCode;
+import com.example.umc9th.domain.member.repository.MemberRepository;
+import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.domain.mission.repository.MissionRepository;
+import com.example.umc9th.domain.review.converter.ReviewConverter;
+import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.exception.ReviewException;
 import com.example.umc9th.domain.review.exception.code.ReviewErrorCode;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
+import com.example.umc9th.domain.store.entity.Store;
 import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.example.umc9th.domain.member.entity.QMember.member;
+import static com.example.umc9th.domain.mission.entity.QMission.mission;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewQueryServiceImpl implements ReviewQueryService {
 
     private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
+
+    // post요청 관련서비스는 commandservice로 따로 작성하라함 queryservice는 get요청용
+    @Override
+    @Transactional
+    public Review createReview(Long userId, Long missionId, ReviewReqDto.JoinDto request) {
+
+        // 1. 유저 확인
+        Member member = memberRepository.findById(userId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.MEMBER_NOT_FOUND));
+
+        // 2. 미션 확인
+        Mission mission = missionRepository.findById(missionId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.MEMBER_NOT_FOUND)); // MissionHandler가 없으면 일단 MemberHandler 사용 (나중에 수정 권장)
+
+        // 3. 미션 수행 가게 확인
+        Store store = mission.getStore();
+
+        // 4. 리뷰 생성 및 저장
+        Review review = ReviewConverter.toReview(request, member, store);
+        return reviewRepository.save(review);
+    }
 
     public List<Review> findReviewsByStoreAndRating(
             Long memberId,
