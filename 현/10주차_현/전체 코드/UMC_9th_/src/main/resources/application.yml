@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/umc_9th_?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: g01049088861
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+jwt:
+    token:
+      secretKey: ZGh3YWlkc2F2ZXdhZXZ3b2EgMTM5ZXUgMDMxdWMyIHEyMiBAIDAgKTJFVio= # 아무 값이나 긴 거
+      expiration:
+        access: 14400000 # 4시간 (ms 단위)
