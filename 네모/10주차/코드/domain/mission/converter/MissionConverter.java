@@ -1,0 +1,44 @@
+package com.example.umc9th_week5.domain.mission.converter;
+
+import com.example.umc9th_week5.domain.mission.dto.req.MissionReqDTO;
+import com.example.umc9th_week5.domain.mission.dto.res.MissionResDTO;
+import com.example.umc9th_week5.domain.mission.entity.Mission;
+import com.example.umc9th_week5.domain.store.converter.StoreConverter;
+import com.example.umc9th_week5.domain.store.entity.Store;
+import org.springframework.data.domain.Page;
+
+public class MissionConverter {
+    // dto -> entity
+    public static Mission toMissionEntity(MissionReqDTO.missionReqDTO dto, Store store){
+        return Mission.builder()
+                .store(store)
+                .title(dto.title())
+                .description(dto.description())
+                .points(dto.points())
+                .build();
+    }
+
+    //entity -> dto
+    public static MissionResDTO .MissionInfo toMissionDTO(Mission mission){
+        return MissionResDTO.MissionInfo.builder()
+                .id(mission.getId())
+                .store(StoreConverter.toStoreDTO(mission.getStore()))
+                .title(mission.getTitle())
+                .description(mission.getDescription())
+                .points(mission.getPoints())
+                .build();
+    }
+
+    public static MissionResDTO.MissionInfoList toMissionListDTO(Page<Mission> mission){
+        return MissionResDTO.MissionInfoList.builder()
+                .missionList(mission.getContent().stream()
+                        .map(MissionConverter :: toMissionDTO)
+                        .toList())
+                .isFirst(mission.isFirst())
+                .isLast(mission.isLast())
+                .listSize(mission.getSize())
+                .totalElements(mission.getTotalElements())
+                .totalPage(mission.getTotalPages())
+                .build();
+    }
+}

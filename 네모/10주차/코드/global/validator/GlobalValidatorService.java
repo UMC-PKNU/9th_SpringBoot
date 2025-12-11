@@ -1,4 +1,4 @@
-package com.example.umc9th_week5.global.validation;
+package com.example.umc9th_week5.global.validator;
 
 import com.example.umc9th_week5.domain.member.code.MemberErrorCode;
 import com.example.umc9th_week5.domain.member.entity.Member;
@@ -35,6 +35,10 @@ public class GlobalValidatorService {
 
     public Member validateExistMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow(() -> new GeneralException(MemberErrorCode.NOT_FOUND));
+    }
+
+    public Member validateExistMemberByEmail(String email){
+        return memberRepository.findByEmail(email).orElseThrow(() -> new GeneralException(MemberErrorCode.NOT_FOUND));
     }
 
     public Store validateExistStoreById(Long storeId){
